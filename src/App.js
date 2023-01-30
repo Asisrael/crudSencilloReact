@@ -14,12 +14,9 @@ import {
 } from "reactstrap";
 
 const data = [
-  { id: 1, personaje: "Naruto", anime: "Naruto" },
-  { id: 2, personaje: "Goku", anime: "Dragon Ball" },
-  { id: 3, personaje: "Kenshin Himura", anime: "Rurouni Kenshin" },
-  { id: 4, personaje: "Monkey D. Luffy", anime: "One Piece" },
-  { id: 5, personaje: "Edward Elric", anime: "Fullmetal Alchemist: Brotherhood"},
-  { id: 6, personaje: "Seto Kaiba", anime: "Yu-Gi-Oh!" },
+  { id: 1, Sicoin: "122561", Modelo: "Optiplex", Marca: "Dell", Serie: "SN" , Encargado: "Sandra Patricia Hernandez" ,Numero_Tarjeta: "230"  },
+  { id: 2, Sicoin: "7EC17", Modelo: "Sin Modelo", Marca: "Sin Marca", Serie: "SN" , Encargado: "Sandra Patricia Hernandez",Numero_Tarjeta: "230"   },
+  { id: 3, Sicoin: "289747", Modelo: "F3", Marca: "Sin Marca", Serie: "09BB014601" , Encargado: "Guido Noriega",Numero_Tarjeta: "255"   },
 ];
 
 class App extends React.Component {
@@ -29,8 +26,12 @@ class App extends React.Component {
     modalInsertar: false,
     form: {
       id: "",
-      personaje: "",
-      anime: "",
+      Marca: "",
+     Modelo: "",
+      Sicoin: "",
+       Serie: "",
+        Encargado: "",
+         Numero_Tarjeta: "",
     },
   };
 
@@ -60,8 +61,12 @@ class App extends React.Component {
     var arreglo = this.state.data;
     arreglo.map((registro) => {
       if (dato.id == registro.id) {
-        arreglo[contador].personaje = dato.personaje;
-        arreglo[contador].anime = dato.anime;
+        arreglo[contador].Sicoin = dato.Sicoin;
+        arreglo[contador].Modelo = dato.Modelo;
+        arreglo[contador].Marca = dato.Marca;
+        arreglo[contador].Serie = dato.Serie;
+        arreglo[contador].Encargado = dato.Encargado;
+        arreglo[contador].Numero_Tarjeta = dato.Numero_Tarjeta;
       }
       contador++;
     });
@@ -113,8 +118,12 @@ class App extends React.Component {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Personaje</th>
-                <th>Anime</th>
+                <th>Sicoin</th>
+                <th>Modelo</th>
+                <th>Marca</th>
+                <th>Serie</th>
+                <th>Encargado</th>
+                <th>Numero_Tarjeta</th>
                 <th>Acción</th>
               </tr>
             </thead>
@@ -123,11 +132,22 @@ class App extends React.Component {
               {this.state.data.map((dato) => (
                 <tr key={dato.id}>
                   <td>{dato.id}</td>
-                  <td>{dato.personaje}</td>
-                  <td>{dato.anime}</td>
+                  <td>{dato.Sicoin}</td>
+                  <td>{dato.Modelo}</td>
+                   <td>{dato.Marca}</td>
+                    <td>{dato.Serie}</td>
+                     <td>{dato.Encargado}</td>
+                     <td>{dato.Numero_Tarjeta}</td>
+                     
                   <td>
-                    <Button
+                     <Button
                       color="primary"
+                      onClick={() => this.mostrarModalActualizar(dato)}
+                    >
+                      Ver
+                    </Button>{" "}
+                    <Button
+                      color="secundary"
                       onClick={() => this.mostrarModalActualizar(dato)}
                     >
                       Editar
@@ -161,27 +181,79 @@ class App extends React.Component {
             
             <FormGroup>
               <label>
-                Personaje: 
+                Sicoin: 
               </label>
               <input
                 className="form-control"
-                name="personaje"
+                name="Sicoin"
                 type="text"
                 onChange={this.handleChange}
-                value={this.state.form.personaje}
+                value={this.state.form.Sicoin}
               />
             </FormGroup>
             
             <FormGroup>
               <label>
-                Anime: 
+               Modelo: 
               </label>
               <input
                 className="form-control"
-                name="anime"
+                name="Modelo"
                 type="text"
                 onChange={this.handleChange}
-                value={this.state.form.anime}
+                value={this.state.form.Modelo}
+              />
+            </FormGroup>
+
+             <FormGroup>
+              <label>
+                Marca: 
+              </label>
+              <input
+                className="form-control"
+                name="Marca"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.form.Marca}
+              />
+            </FormGroup>
+
+             <FormGroup>
+              <label>
+                Serie: 
+              </label>
+              <input
+                className="form-control"
+                name="Serie"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.form.Serie}
+              />
+            </FormGroup>
+
+             <FormGroup>
+              <label>
+                Encargado: 
+              </label>
+              <input
+                className="form-control"
+                name="Encargado"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.form.Encargado}
+              />
+            </FormGroup>
+
+             <FormGroup>
+              <label>
+                Numero_Tarjeta: 
+              </label>
+              <input
+                className="form-control"
+                name="Numero_Tarjeta"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.form.Numero_Tarjeta}
               />
             </FormGroup>
           </ModalBody>
@@ -206,7 +278,7 @@ class App extends React.Component {
 
         <Modal isOpen={this.state.modalInsertar}>
           <ModalHeader>
-           <div><h3>Insertar Personaje</h3></div>
+           <div><h3>Insertar Marca</h3></div>
           </ModalHeader>
 
           <ModalBody>
@@ -225,11 +297,11 @@ class App extends React.Component {
             
             <FormGroup>
               <label>
-                Personaje: 
+                Sicoin: 
               </label>
               <input
                 className="form-control"
-                name="personaje"
+                name="Sicoin"
                 type="text"
                 onChange={this.handleChange}
               />
@@ -237,11 +309,55 @@ class App extends React.Component {
             
             <FormGroup>
               <label>
-                Anime: 
+               Modelo: 
               </label>
               <input
                 className="form-control"
-                name="anime"
+                name="Modelo"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+              <FormGroup>
+              <label>
+                Marca: 
+              </label>
+              <input
+                className="form-control"
+                name="Marca"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+              <FormGroup>
+              <label>
+                Serie: 
+              </label>
+              <input
+                className="form-control"
+                name="Serie"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+              <FormGroup>
+              <label>
+                Encargado: 
+              </label>
+              <input
+                className="form-control"
+                name="Encargado"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+             <FormGroup>
+              <label>
+                Numero_Tarjeta: 
+              </label>
+              <input
+                className="form-control"
+                name="Numero_Tarjeta"
                 type="text"
                 onChange={this.handleChange}
               />
